@@ -1,0 +1,16 @@
+---
+- name: configure mongodb bind ip
+  lineinfile: dest=/etc/mongod.conf regexp="^(#\s*)?bind_ip\s*=.*$" line="bind_ip = {{ mongodb_bindIp }}" state=present
+  notify: restart mongodb
+
+- name: configure mongodb port
+  lineinfile: dest=/etc/mongod.conf regexp="^(#\s*)?port\s*=.*$" line="port = {{ mongodb_port }}" state=present
+  notify: restart mongodb
+
+- name: configure security key
+  lineinfile: dest=/etc/mongod.conf regexp="^(#\s*)?keyFile\s*=.*$" line="keyFile = {{ key }}" state=present
+  notify: restart mongodb
+
+- name: configure replication
+  lineinfile: dest=/etc/mongod.conf regexp="^(#\s*)?replSet\s*=.*$" line="replSet = rs0" state=present
+  notify: restart mongodb

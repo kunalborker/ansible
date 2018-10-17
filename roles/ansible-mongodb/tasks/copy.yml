@@ -1,0 +1,16 @@
+---
+ - name: Create /opt/mongo directory
+   file:
+    path: /opt/mongo
+    state: directory
+    mode: 0777
+
+ - name: Change directory permission /opt
+   file:
+    path: /opt
+    state: directory
+    mode: 0777
+
+ - name: Copy mongo-keyfile from master to slaves
+   become_user: vagrant
+   shell: scp master:/home/vagrant/mongo-keyfile /opt/mongo/

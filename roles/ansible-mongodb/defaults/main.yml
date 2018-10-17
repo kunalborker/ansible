@@ -1,0 +1,5 @@
+---
+mongodb_version: 3.0.4
+mongodb_bindIp: "{{ facter_ipaddress_eth1 }}"
+mongodb_port: 27017
+key: /opt/mongo/mongo-keyfile

@@ -1,0 +1,19 @@
+---
+# tasks file for keyfile-mongo
+- name: Generate key-file
+  shell: openssl rand -base64 756 > mongo-keyfile
+
+- name: Create directory
+  file:
+    path: /opt/mongo
+    state: directory
+    mode: 0755
+
+- name: Change opt permissions
+  file:
+    path: /opt
+    state: directory
+    mode: 0777
+
+- name: Copy key-file
+  shell: sudo cp -pr /home/vagrant/mongo-keyfile /opt/mongo/mongo-keyfile && sudo chown vagrant:vagrant /home/vagrant/mongo-keyfile && chmod 777 /home/vagrant/mongo-keyfile
